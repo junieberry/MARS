@@ -1,0 +1,4 @@
+pytorch-lightning==2.3.3
+transformers~=4.28.0
+wandb
+wonderwords
