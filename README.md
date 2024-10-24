@@ -44,6 +44,11 @@ python process.py --file_path path/to/dataset.json.gz --meta_file_path path/to/m
 
 ### Training
 
+Run the training script as follows:
+```
+python main.py --data_path dataset/Scientific_ours --bf16 --num_train_epochs 128 --warmup_steps 1000
+```
+
 ## Acknowledgement
 
 This work is based on and inspired by the methods introduced in [Recformer](https://github.com/AaronHeee/RecFormer).
