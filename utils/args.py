@@ -69,7 +69,7 @@ def parse_finetune_args():
     parser.add_argument("--batch_size", type=int, default=8)
     parser.add_argument("--learning_rate", type=float, default=5e-5)
     parser.add_argument("--weight_decay", type=float, default=0)
-    parser.add_argument("--warmup_steps", type=int, default=1000)
+    parser.add_argument("--warmup_steps", type=int, default=1600)
     parser.add_argument("--device", type=str, default="cuda:0")
     parser.add_argument("--bf16", action="store_true")
     parser.add_argument("--fix_word_embedding", action="store_true")
