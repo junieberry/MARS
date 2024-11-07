@@ -8,7 +8,7 @@ Recommendation"** in CIKM'24.
 MARS is a text-based sequential recommendation framework that
 effectively captures attribute-wise user/item interactions.
 
-![overview](assets/overview.png)
+<img src="assets/overview.png" alt="overview" style="width: 50%;">
 
 - Attribute-aware text encoding captures the fine-grained user
   preferences based on textual attributes of items.
@@ -16,7 +16,9 @@ effectively captures attribute-wise user/item interactions.
   preference of users.
 
 Please refer to the paper and poster for more details
+
 Paper: [HERE](https://arxiv.org/abs/2409.00702)
+
 Poster: [HERE](assets/poster.pdf)
 
 ## Getting Started
@@ -45,8 +47,9 @@ python process.py --file_path path/to/dataset.json.gz --meta_file_path path/to/m
 ### Training
 
 Run the training script as follows:
+
 ```
-python main.py --data_path dataset/Scientific_ours --bf16 --num_train_epochs 128 --warmup_steps 1000
+python main.py --data_path dataset/Scientific_ours --bf16 --num_train_epochs 128 --warmup_steps 800
 ```
 
 ## Acknowledgement
@@ -58,19 +61,11 @@ This work is based on and inspired by the methods introduced in [Recformer](http
 If you find this work useful for your research, please cite our paper:
 
 ```
-@inproceedings{10.1145/3627673.3679960,
-author = {Kim, Hyunsoo and Kim, Junyoung and Choi, Minjin and Lee, Sunkyung and Lee, Jongwuk},
-title = {MARS: Matching Attribute-aware Representations for Text-based Sequential Recommendation},
-year = {2024},
-isbn = {9798400704369},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/3627673.3679960},
-doi = {10.1145/3627673.3679960},
-pages = {3822–3826},
-numpages = {5},
-keywords = {pre-trained language model, sequential recommendation, zero-shot recommendation},
-location = {Boise, ID, USA},
-series = {CIKM '24}
+@inproceedings{kim2024mars,
+  title={MARS: Matching Attribute-aware Representations for Text-based Sequential Recommendation},
+  author={Kim, Hyunsoo and Kim, Junyoung and Choi, Minjin and Lee, Sunkyung and Lee, Jongwuk},
+  booktitle={Proceedings of the 33rd ACM International Conference on Information and Knowledge Management},
+  pages={3822--3826},
+  year={2024}
 }
 ```

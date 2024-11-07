@@ -61,12 +61,12 @@ def encode_all_items(model: RecformerModel, tokenizer: MARSTokenizer, tokenized_
 
     with torch.no_grad():
         for i in tqdm(
-            range(0, len(items), args.batch_size * args.encode_item_batch_size_multiplier),
-            ncols=100,
-            desc="Encode all items",
+                range(0, len(items), args.batch_size * args.encode_item_batch_size_multiplier),
+                ncols=100,
+                desc="Encode all items",
         ):
 
-            item_batch = [[item] for item in items[i : i + args.batch_size * args.encode_item_batch_size_multiplier]]
+            item_batch = [[item] for item in items[i: i + args.batch_size * args.encode_item_batch_size_multiplier]]
 
             inputs = tokenizer.batch_encode(item_batch, encode_item=False)
 

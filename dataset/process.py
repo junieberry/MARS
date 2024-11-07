@@ -13,7 +13,6 @@ class LabelField:
         self.label_num = 0
 
     def get_id(self, label):
-
         if label in self.label2id:
             return self.label2id[label]
 
@@ -59,7 +58,6 @@ def extract_meta_data(path):
 
 meta_dict = extract_meta_data(args.meta_file_path)
 
-
 output_path = args.output_path
 if not os.path.exists(output_path):
     os.mkdir(output_path)
@@ -88,7 +86,6 @@ for line in tqdm(gin):
     time = line["unixReviewTime"]
 
     if item_id in meta_dict:
-
         raw_sequences[user_id].append((item_id, time))
 
 for k, v in raw_sequences.items():
@@ -104,14 +101,6 @@ intersections = 0
 for k, v in tqdm(sequences.items()):
     sequences[k] = sorted(v, key=lambda x: x[1])
     sequences[k] = [ele[0] for ele in sequences[k]]
-
-    # Dedup with order reserved
-    dedup = []
-    for ele in sequences[k]:
-        if ele not in dedup:
-            dedup.append(ele)
-
-    sequences[k] = dedup
 
     length = len(sequences[k])
     intersections += length

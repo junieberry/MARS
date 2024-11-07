@@ -16,19 +16,19 @@ from transformers.models.longformer.modeling_longformer import (
 
 class MARSConfig(LongformerConfig):
     def __init__(
-        self,
-        attention_window: Union[List[int], int] = 64,
-        sep_token_id: int = 2,
-        token_type_size: int = 4,  # <s>, key, value, <pad>
-        max_token_num: int = 2048,
-        max_item_embeddings: int = 32,  # 1 for <s>, 50 for items
-        max_attr_num: int = 12,
-        max_attr_length: int = 8,
-        pooler_type: str = "cls",
-        temp: float = 0.05,
-        mlm_weight: float = 0.1,
-        item_num: int = 0,
-        **kwargs,
+            self,
+            attention_window: Union[List[int], int] = 64,
+            sep_token_id: int = 2,
+            token_type_size: int = 4,  # <s>, key, value, <pad>
+            max_token_num: int = 2048,
+            max_item_embeddings: int = 32,  # 1 for <s>, 50 for items
+            max_attr_num: int = 12,
+            max_attr_length: int = 8,
+            pooler_type: str = "cls",
+            temp: float = 0.05,
+            mlm_weight: float = 0.1,
+            item_num: int = 0,
+            **kwargs,
     ):
         super().__init__(attention_window, sep_token_id, **kwargs)
 
@@ -75,11 +75,11 @@ class MARSPooler(nn.Module):
         self.linear = nn.Linear(config.hidden_size, config.linear_dim)
 
     def forward(
-        self,
-        attention_mask: torch.Tensor,
-        hidden_states: torch.Tensor,
-        attr_type_ids: torch.Tensor,
-        item_position_ids: torch.Tensor,
+            self,
+            attention_mask: torch.Tensor,
+            hidden_states: torch.Tensor,
+            attr_type_ids: torch.Tensor,
+            item_position_ids: torch.Tensor,
     ):
         hidden_states = self.linear.forward(hidden_states)
 
@@ -209,14 +209,14 @@ class RecformerModel(LongformerPreTrainedModel):
             self.encoder.layer[layer].attention.prune_heads(heads)
 
     def _pad_to_window_size(
-        self,
-        input_ids: torch.Tensor,
-        attention_mask: torch.Tensor,
-        token_type_ids: torch.Tensor,
-        position_ids: torch.Tensor,
-        item_position_ids: torch.Tensor,
-        inputs_embeds: torch.Tensor,
-        pad_token_id: int,
+            self,
+            input_ids: torch.Tensor,
+            attention_mask: torch.Tensor,
+            token_type_ids: torch.Tensor,
+            position_ids: torch.Tensor,
+            item_position_ids: torch.Tensor,
+            inputs_embeds: torch.Tensor,
+            pad_token_id: int,
     ):
         """A helper function to pad tokens and mask to work with implementation of Longformer self-attention."""
         # padding
@@ -283,19 +283,19 @@ class RecformerModel(LongformerPreTrainedModel):
         return attention_mask
 
     def forward(
-        self,
-        input_ids: Optional[torch.Tensor] = None,
-        attention_mask: Optional[torch.Tensor] = None,
-        global_attention_mask: Optional[torch.Tensor] = None,
-        head_mask: Optional[torch.Tensor] = None,
-        token_type_ids: Optional[torch.Tensor] = None,
-        attr_type_ids: Optional[torch.Tensor] = None,
-        position_ids: Optional[torch.Tensor] = None,
-        item_position_ids: Optional[torch.Tensor] = None,
-        inputs_embeds: Optional[torch.Tensor] = None,
-        output_attentions: Optional[bool] = None,
-        output_hidden_states: Optional[bool] = None,
-        return_dict: Optional[bool] = None,
+            self,
+            input_ids: Optional[torch.Tensor] = None,
+            attention_mask: Optional[torch.Tensor] = None,
+            global_attention_mask: Optional[torch.Tensor] = None,
+            head_mask: Optional[torch.Tensor] = None,
+            token_type_ids: Optional[torch.Tensor] = None,
+            attr_type_ids: Optional[torch.Tensor] = None,
+            position_ids: Optional[torch.Tensor] = None,
+            item_position_ids: Optional[torch.Tensor] = None,
+            inputs_embeds: Optional[torch.Tensor] = None,
+            output_attentions: Optional[bool] = None,
+            output_hidden_states: Optional[bool] = None,
+            return_dict: Optional[bool] = None,
     ) -> Union[Tuple, MARSBaseModelOutputWithPooling]:
 
         output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
@@ -346,8 +346,8 @@ class RecformerModel(LongformerPreTrainedModel):
         # We can provide a self-attention mask of dimensions [batch_size, from_seq_length, to_seq_length]
         # ourselves in which case we just need to make it broadcastable to all heads.
         extended_attention_mask: torch.Tensor = self.get_extended_attention_mask(attention_mask, input_shape, device)[
-            :, 0, 0, :
-        ]
+                                                :, 0, 0, :
+                                                ]
 
         embedding_output = self.embeddings(
             input_ids=input_ids,
@@ -428,19 +428,19 @@ class MARSForSeqRec(LongformerPreTrainedModel):
         return sim
 
     def forward(
-        self,
-        input_ids: Optional[torch.Tensor] = None,
-        attention_mask: Optional[torch.Tensor] = None,
-        global_attention_mask: Optional[torch.Tensor] = None,
-        head_mask: Optional[torch.Tensor] = None,
-        token_type_ids: Optional[torch.Tensor] = None,
-        attr_type_ids: Optional[torch.Tensor] = None,
-        position_ids: Optional[torch.Tensor] = None,
-        item_position_ids: Optional[torch.Tensor] = None,
-        inputs_embeds: Optional[torch.Tensor] = None,
-        output_attentions: Optional[bool] = None,
-        output_hidden_states: Optional[bool] = None,
-        labels: Optional[torch.Tensor] = None,  # target item ids
+            self,
+            input_ids: Optional[torch.Tensor] = None,
+            attention_mask: Optional[torch.Tensor] = None,
+            global_attention_mask: Optional[torch.Tensor] = None,
+            head_mask: Optional[torch.Tensor] = None,
+            token_type_ids: Optional[torch.Tensor] = None,
+            attr_type_ids: Optional[torch.Tensor] = None,
+            position_ids: Optional[torch.Tensor] = None,
+            item_position_ids: Optional[torch.Tensor] = None,
+            inputs_embeds: Optional[torch.Tensor] = None,
+            output_attentions: Optional[bool] = None,
+            output_hidden_states: Optional[bool] = None,
+            labels: Optional[torch.Tensor] = None,  # target item ids
     ):
         outputs = self.longformer.forward(
             input_ids,
